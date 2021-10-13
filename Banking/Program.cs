@@ -19,7 +19,7 @@ namespace Banking
             Console.WriteLine($"Account {account.Number} was created for {account.Owner} with {account.Balance} dollars");
 
             decimal depositAmount = 200.0m;
-            account.MakeDeposit(200, DateTime.Now, "Cash deposit made in person");
+            account.MakeDeposit(depositAmount, DateTime.Now, "Cash deposit made in person");
 
             Console.WriteLine($"Deposit of {depositAmount } euros made to Account {account.Number}. New balance of {account.Balance} euros");
 
