@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Banking
 {
-    class BankAccount
+    public class BankAccount
     {
         // Properties
         public string Number { get; }
@@ -32,6 +32,8 @@ namespace Banking
         // Constructor
         public BankAccount(string name, decimal initialBalance)
         {
+            var deposit= new Transaction(initialBalance, DateTime.Now, "Initial opening balance");
+            allTransactions.Add(deposit);
             this.Owner = name;
             this.Number = accountNumberSeed.ToString();
             accountNumberSeed++;
@@ -47,6 +49,12 @@ namespace Banking
 
         public void MakeWithdrawal(decimal amount, DateTime date, string note)
         {
+            if(amount > this.Balance)
+            {
+                throw new ArgumentException("The withdrawal amount can not exceed the balance");
+            }
+            var withdrawal = new Transaction(-amount, date, note);
+            allTransactions.Add(withdrawal);
         }
     }
 }
